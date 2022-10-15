@@ -11,23 +11,40 @@ const signup= async (req,res) =>{
 
     const { name, email, password, type} = req.body
 
-    if(type == USER){
-        try{const user = new User()
+    try{
 
-        user.name = name
-        user.email = email
-        user.password = await bcrypt.hash(password,10)
-        user.cv = new Cv
+        if(password.length<6)
+            throw 'password too short'
 
-        await user.save()
+            if(type == USER){
+            const user = new User()
 
-        res.json(user)}
-        catch(err){
-            res.send(err)
+            user.name = name
+            user.email = email
+            user.password = await bcrypt.hash(password,10)
+            user.cv = new Cv
+
+            await user.save()
+
+            res.json(user)
         }
+        else if(type == COMPANY){
+            const company = new Company()
+
+            company.name = name
+            company.email = email
+            company.password = await bcrypt.hash(password,10)
+            company.jobs = []
+
+            await company.save()
+
+            res.json(company)
+        }
+        else
+        throw 'invalid user type'
+    }catch(error){
+        res.status(400).send(error)
     }
-    else
-    res.status(401).send("test")
 }
 
 module.exports = {
