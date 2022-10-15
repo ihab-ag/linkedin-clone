@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
 
-export const CvSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: 'name is required',
-    },
+const CvSchema = mongoose.Schema({
     bio: {
         type: String,
-    },
-    url: {
-        type: String,
-        required: 'url is required',
+        default: 'no expirence'
     }
 })
 
-export const Cv = mongoose.model(CvSchema, 'Cv')
+const Cv = mongoose.model('Cv', CvSchema)
+
+module.exports= {
+    Cv,
+    CvSchema
+}
