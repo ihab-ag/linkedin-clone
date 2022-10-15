@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { CvSchema } = require('./cv.model')
+const { Cv, CvSchema} = require('./cv.model')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -10,16 +10,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: 'email is required',
         unique: true,
-        trim: true
+        trim: true,
+        match: [/^\w+@\w+$/, 'email invalid'],
     },
     password: {
         type: String,
         required: 'password is required',
-        select: false
+        select: false,
     },
     cv: CvSchema
 })
 
-const User = mongoose.model(userSchema, 'User')
+const User = mongoose.model('User', userSchema)
 
 module.exports = User

@@ -9,7 +9,8 @@ const companySchema = mongoose.Schema({
         type: String,
         required: 'email is required',
         unique: true,
-        trim: true
+        trim: true,
+        match: [/^\w+@\w+$/, 'email invalid'],
     },
     password: {
         type: String,
@@ -22,6 +23,6 @@ const companySchema = mongoose.Schema({
     }]
 })
 
-const Company = mongoose.model(companySchema, "Company")
+const Company = mongoose.model("Company", companySchema)
 
 module.exports = Company
