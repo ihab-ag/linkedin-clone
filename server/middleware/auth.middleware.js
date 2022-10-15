@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 
 const authMiddleware = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1]
-    console.log(token)
     try{
         if(!token)
 
@@ -14,7 +13,7 @@ const authMiddleware = (req, res, next) => {
         req.type = decoded.type
 
         next()
-        
+
     }catch(error){
         res.status(401).send(error.message)
     }

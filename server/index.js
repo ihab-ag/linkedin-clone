@@ -9,6 +9,9 @@ app.use(express.json());
 const authRouter = require('./routes/auth.routes')
 app.use('/auth', authRouter)
 
+const auth = require('./middleware/auth.middleware')
+const {getUser} = require('./controllers/user.controller')
+app.get('/test', auth , getUser)
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
     console.log(`server running on port ${process.env.PORT}`);
