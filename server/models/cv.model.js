@@ -4,6 +4,10 @@ const CvSchema = mongoose.Schema({
     bio: {
         type: String,
         default: 'no expirence'
+    },
+    experience: {
+        type: Array,
+        default: []
     }
 })
 
