@@ -5,10 +5,10 @@ const followingSchema= mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    company: {
+    companies: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'
-    }
+    }]
 })
 
 const Following = mongoose.model(followingSchema, "Following")
