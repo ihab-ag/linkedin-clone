@@ -11,6 +11,6 @@ const followingSchema= mongoose.Schema({
     }]
 })
 
-const Following = mongoose.model(followingSchema, "Following")
+const Following = mongoose.model("Following", followingSchema)
 
 module.exports = Following
