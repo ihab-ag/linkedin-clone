@@ -4,10 +4,12 @@ const Company = require('../models/company.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const signup= async (req,res) =>{
-    // types
-    const USER = 'user'
-    const COMPANY = 'company'
+// types
+const USER = 'user'
+const COMPANY = 'company'
+
+
+const signup= async (req, res) =>{
 
     const { name, email, password, type} = req.body
 
@@ -47,6 +49,70 @@ const signup= async (req,res) =>{
     }
 }
 
+const login = async (req, res) =>{
+    const {email, password, type} = req.body
+
+    try
+   { 
+        if(type == USER){
+
+            const user = await User.findOne({email}).select("+password");
+
+            if(!user) 
+                throw "Invalid Credentials";
+
+            const isMatch = bcrypt.compare(password, user.password)
+
+            if(!isMatch)
+                throw "Invalid Credentials";
+
+            const token = jwt.sign({
+                id: user._id,
+                type: type
+                }, 
+                process.env.JWT_SECRET_KEY,{
+                expiresIn: '1h'
+            });
+
+            return res.json({
+                authorisation:{
+                    token: token,
+                    type: 'bearer',
+                }})
+        }
+        else if(type == COMPANY){
+
+            const company = await Company.findOne({email}).select("+password");
+
+            if(!company) 
+                throw "Invalid Credentials";
+
+            const isMatch = bcrypt.compare(password, company.password)
+
+            if(!isMatch)
+                throw "Invalid Credentials";
+
+            const token = jwt.sign({
+                id: company._id,
+                type: type
+                },
+                process.env.JWT_SECRET_KEY,{
+                expiresIn: '1h'
+            });
+            
+            return res.json({
+                authorisation:{
+                    token: token,
+                    type: 'bearer',
+                }})
+        }
+    }catch(error){
+        res.status(404).send(error.message)
+    } 
+    
+}
+
 module.exports = {
-    signup
+    signup,
+    login
 }
