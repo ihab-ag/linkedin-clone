@@ -3,28 +3,35 @@ const Following = require('../models/following.model')
 const Company = require('../models/company.model')
 
 const getUser = async (req, res) => {
-    const id = req.id
+    try{
+        const id = req.id
 
-    const user = await User.findById(id)
+        const user = await User.findById(id)
 
-    res.json(user)
+        res.json(user)
+    }catch(error){
+        res.status(404).send(error.message)
+    }
 }
 
 const updateUser = async (req, res) => {
-    const id = req.id
-    const {name, bio, experience} = req.body
+    try{
+        const id = req.id
+        const {name, bio, experience} = req.body
 
-    const user = await User.findById(id)
+        const user = await User.findById(id)
 
-    user.name = name
-    user.cv.bio = bio
-    user.cv.experience = experience == null ? [] : experience
+        user.name = name
+        user.cv.bio = bio
+        user.cv.experience = experience == null ? [] : experience
 
-    await user.save()
+        await user.save()
 
-    const userNew = await User.findById(id)
-    res.json(user)
-    
+        const userNew = await User.findById(id)
+        res.json(user)
+    }catch(error){
+        res.status(404).send(error.message)
+    }
 }
 
 const followUnfollowCompany = async (req, res) => {
@@ -62,7 +69,7 @@ const followUnfollowCompany = async (req, res) => {
 
         res.json(userFollowing)
     }catch(error){
-        res.status(400).send(error)
+        res.status(400).send(error.message)
     }
 
 }
