@@ -29,7 +29,7 @@ const postJob = async (req, res) => {
         const users = await Following.find({"companies": company})
 
         for(const user of users){
-            
+
             let userNotifications = await Notifications.findOne({'user' : user.user,});
 
             if(!userNotifications){
@@ -54,6 +54,19 @@ const postJob = async (req, res) => {
     }
 }
 
+const getJobs = async (req,res) => {
+
+    id = req.id
+
+    const company = await Company.findById(id).populate('jobs')
+
+    if(!company)
+        return res.status(404).send('company not found')
+
+    res.json(company)
+}
+
 module.exports = {
-    postJob
+    postJob,
+    getJobs
 }
