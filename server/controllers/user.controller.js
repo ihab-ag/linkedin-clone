@@ -109,11 +109,28 @@ const searchJobs = async (req, res) => {
 
     res.json(jobs)
 }
+
+const applyJob = async (req, res) => {
+
+    const id = req.id
+    const { job_id } = req.body
+
+    const user = await User.findById(id)
+    const job = await Job.findById(job_id)
+
+    job.applicants = [...job.applicants, user]
+
+    job.save()
+
+    res.json(job)
+}
+
 module.exports = {
     getUser,
     updateUser,
     followUnfollowCompany,
     getCompany,
     getNotifications,
-    searchJobs
+    searchJobs,
+    applyJob
 }
