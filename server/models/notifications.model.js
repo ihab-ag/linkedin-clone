@@ -7,7 +7,7 @@ const notificationsSchema= mongoose.Schema({
     },
     jobs: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Jobs'
+        ref: 'Job'
     }]
 })
 
