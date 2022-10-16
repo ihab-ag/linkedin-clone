@@ -6,4 +6,4 @@ const router = Router()
 
 router.post('/job', auth, company, postJob)
 
-router.get('jobs', auth, company, getJobs)
+router.get('/jobs', auth, company, getJobs)
