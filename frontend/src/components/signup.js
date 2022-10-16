@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { signupReq } from "../apis/signup.api"
 
 export const Signup = () => {
     const [name, setName] = useState('')
@@ -7,8 +9,36 @@ export const Signup = () => {
     const [type, setType] = useState('user')
     const [message, setMessage] = useState('')
 
+    const navigate = useNavigate()
+
+    const signup = async (e) => {
+
+        e.preventDefault()
+
+        if(name==="")
+            return setMessage("Name cannot be empty")
+        else if(!(/\w{3,}[@]\w{2,}$/).test(email))
+            return setMessage("Email is invalid")
+        else if(!((/[a-z]/).test(pass)&&(/[A-Z]/).test(pass)&&(/[0-9]/).test(pass)&&pass.length>6))
+            return setMessage("Password should have Aa9")
+
+        const data = {
+            "name": name,
+            "email": email,
+            "password": pass,
+            "type": type
+        }
+
+        const res = await signupReq(data)
+        console.log(res)
+        if(res.status !== 200)
+            return setMessage('Invalid information')
+
+         navigate(`/login`)
+    }
+
     return (
-        <form className="flex flex-col gap-y-4 w-fit">
+        <form className="flex flex-col gap-y-4 w-fit" onSubmit={signup}>
             <h3 className=" text-lg font-bold ">Sign up</h3>
             <label class="block">
                 <span class="block text-md font-medium">Name</span>
@@ -16,7 +46,7 @@ export const Signup = () => {
             </label>
             <label class="block">
                 <span class="block text-md font-medium">Email</span>
-                <input type="email" class="border-solid border-cyan-600 border-2 rounded-md " value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" class="border-solid border-cyan-600 border-2 rounded-md " value={email} onChange={(e) => setEmail(e.target.value)} />
             </label>
             <label class="block">
                 <span class="block text-md font-medium ">Password</span>
