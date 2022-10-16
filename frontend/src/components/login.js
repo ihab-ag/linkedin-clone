@@ -47,7 +47,7 @@ const Login = () => {
                     <label><input type='radio' name='type' id='company' value='company' className='peer hidden' onChange={(e) => setType(e.target.value)} checked={type === 'company'} /><label for='company' class="text-md font-semibold peer-checked:underline cursor-pointer">Company</label></label>
                 </span>
             </label>
-            <p className="text-md font-normal">New here? <span className="text-md font-normal text-cyan-500 underline cursor-pointer">Sign up</span></p>
+            <p className="text-md font-normal">New here? <span className="text-md font-normal text-cyan-500 underline cursor-pointer" onClick={() => navigate('/signup')}>Sign up</span></p>
             <button type="submit" className="w-full border-cyan-600 border-solid rounded-md border-2 hover:bg-cyan-600 hover:text-white">Login</button>
             <p className="text-md text-rose-600 font-medium">{message}</p>
         </form>
