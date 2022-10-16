@@ -76,14 +76,14 @@ const followUnfollowCompany = async (req, res) => {
 
 const getCompany = async (req,res) =>{
 
-    company_id = req.query.company_id
+    company_id = req.params.company_id
 
     try{
         const company = await Company.findById(company_id)
 
         if(!company)
         return res.status(404).send('company not found')
-        
+
         res.json(company)
     }catch(error){
         res.status(404).send(error.message)
