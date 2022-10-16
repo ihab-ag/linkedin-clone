@@ -12,3 +12,14 @@ export const postReq = async (route,data,token=null) =>{
         return error;
     }
 }
+
+export const getReq = (route,token=null) =>{
+    try{
+         return axios.get(base_url+route,{
+            headers: {
+            'Authorization': 'Bearer ' + token
+          }});
+    }catch(error) {
+        return error;
+    }
+}
