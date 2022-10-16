@@ -1,6 +1,8 @@
 const User = require('../models/user.model')
 const Following = require('../models/following.model')
 const Company = require('../models/company.model')
+const Job =require('../models/job.model')
+const Notifications =require('../models/notifications.model')
 
 const getUser = async (req, res) => {
     try{
@@ -90,9 +92,19 @@ const getCompany = async (req,res) =>{
     }
 }
 
+const getNotifications = async (req,res) =>{
+
+    const id = req.id
+
+    const notifications = await Notifications.find({user : id}).populate('jobs','-applicants')
+
+    res.json(notifications)
+}
+
 module.exports = {
     getUser,
     updateUser,
     followUnfollowCompany,
-    getCompany
+    getCompany,
+    getNotifications
 }
