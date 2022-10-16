@@ -15,3 +15,5 @@ router.get('/company/:company_id', auth, user, getCompany)
 router.get('/jobs', auth, user, searchJobs)
 
 router.post('/job', auth, user, applyJob)
+
+module.exports = router
