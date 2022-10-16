@@ -48,7 +48,7 @@ const Login = () => {
                 </span>
             </label>
             <p className="text-md font-normal">New here? <span className="text-md font-normal text-cyan-500 underline cursor-pointer">Sign up</span></p>
-            <button type="submit" className="w-full border-cyan-600 border-solid rounded-md border-2 hover:bg-cyan-600 hover:text-white">Submit</button>
+            <button type="submit" className="w-full border-cyan-600 border-solid rounded-md border-2 hover:bg-cyan-600 hover:text-white">Login</button>
             <p className="text-md text-rose-600 font-medium">{message}</p>
         </form>
     )
