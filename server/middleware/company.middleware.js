@@ -6,4 +6,4 @@ const companyMiddleware = (req, res, next) => {
     type === TYPE ? next() : res.status(401).send('unauthorized')
 }
 
-module.exports = userMiddleware
+module.exports = companyMiddleware
