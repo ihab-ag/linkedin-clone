@@ -9,3 +9,5 @@ router.post('/job', auth, company, postJob)
 router.get('/jobs', auth, company, getJobs)
 
 router.get('/user/:user_id', auth, company, getUser)
+
+module.exports = router
