@@ -2,6 +2,8 @@ const Company = require('../models/company.model')
 const Job = require('../models/job.model')
 const Following =require('../models/following.model')
 const Notifications = require('../models/notifications.model')
+const User = require('../models/user.model')
+const { use } = require('../routes/auth.routes')
 
 const postJob = async (req, res) => {
 
@@ -54,7 +56,7 @@ const postJob = async (req, res) => {
     }
 }
 
-const getJobs = async (req,res) => {
+const getJobs = async (req, res) => {
 
     id = req.id
 
@@ -66,7 +68,20 @@ const getJobs = async (req,res) => {
     res.json(company)
 }
 
+const getUser = async (req, res) => {
+try{
+    const user_id = req.params.user_id
+    
+    const user = await User.findById(user_id)
+
+    res.json(user)
+}catch(error){
+    res.status(404).send(error.message)
+}
+}
+
 module.exports = {
     postJob,
-    getJobs
+    getJobs,
+    getUser
 }
