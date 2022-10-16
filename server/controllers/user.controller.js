@@ -92,7 +92,7 @@ const getCompany = async (req,res) =>{
     }
 }
 
-const getNotifications = async (req,res) =>{
+const getNotifications = async (req, res) =>{
 
     const id = req.id
 
@@ -101,10 +101,19 @@ const getNotifications = async (req,res) =>{
     res.json(notifications)
 }
 
+const searchJobs = async (req, res) => {
+
+    const { search } = req.query
+
+    const jobs = await Job.find({desc : { $regex: search }})
+
+    res.json(jobs)
+}
 module.exports = {
     getUser,
     updateUser,
     followUnfollowCompany,
     getCompany,
-    getNotifications
+    getNotifications,
+    searchJobs
 }
