@@ -4,9 +4,9 @@ export const Navbar = () => {
     const type = localStorage.getItem('type')
     let paths = []
     const USER_PATHS = [
-        { name: "Profile", path: "/main/user/profile" },
-        { name: "Jobs", path: "/main/user/jobs" },
-        { name: "Notifications", path: "/main/user/notifications" }
+        { name: "Profile", path: "/main/profile" },
+        { name: "Jobs", path: "/main/jobs" },
+        { name: "Notifications", path: "/main/notifications" }
     ]
     if(type==='user')
         paths=[...USER_PATHS]
