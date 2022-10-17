@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
-export const Navbar = ({ type='user' }) => {
+export const Navbar = () => {
+    const type = localStorage.getItem('type')
     let paths = []
     const USER_PATHS = [
         { name: "Profile", path: "/main/user/profile" },

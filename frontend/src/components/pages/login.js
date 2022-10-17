@@ -27,7 +27,9 @@ const Login = () => {
 
         localStorage.setItem('token',res.data.authorisation.token)
 
-        navigate(`/main/${type}`)
+        localStorage.setItem('type',type)
+
+        navigate('/main')
     }
 
     return (
