@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {  useNavigate } from "react-router-dom"
 import { updateUserReq } from "../../apis/update-user.api"
+import { useUser } from "../../hooks/query/user.query"
 
 export const Profile = () => {
     const [name, setName] = useState('')
@@ -24,10 +25,22 @@ export const Profile = () => {
 
 
         const req = await updateUserReq(data)
-        console.log(req)
+        
         if(req.status !== 200)
             navigate('/login')
     }
+
+    const { data, isFetching } = useUser()
+
+    useEffect(() => {
+        if(!isFetching){
+            setName(data['data'].name)
+            setBio(data['data'].cv.bio)
+            setExperience(data['data'].cv.experience.join(","))
+        }
+    },[isFetching])
+    
+    
 
     return (
         <form className="flex flex-col gap-y-4 w-fit" onSubmit={update}>
