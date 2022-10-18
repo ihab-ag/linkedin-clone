@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {  useNavigate } from "react-router-dom"
 import { updateUserReq } from "../../apis/update-user.api"
 
 export const Profile = () => {
@@ -7,8 +8,13 @@ export const Profile = () => {
     const [experience, setExperience] = useState('')
     const [message, setMessage] = useState('')
 
+    const navigate = useNavigate()
+
     const update = async (e) => {
         e.preventDefault()
+
+        if(name===""||bio===""||experience==="")
+            return setMessage("all fields are required")
 
         const data = {
             "name": name,
@@ -16,10 +22,11 @@ export const Profile = () => {
             "experience": experience.split(",")
         }
 
-        console.log(experience.split(","))
-        const req = await updateUserReq(data)
 
+        const req = await updateUserReq(data)
         console.log(req)
+        if(req.status !== 200)
+            navigate('/login')
     }
 
     return (
