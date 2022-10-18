@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { updateUserReq } from "../../apis/update-user.api"
 
 export const Profile = () => {
     const [name, setName] = useState('')
@@ -6,9 +7,23 @@ export const Profile = () => {
     const [experience, setExperience] = useState('')
     const [message, setMessage] = useState('')
 
+    const update = async (e) => {
+        e.preventDefault()
+
+        const data = {
+            "name": name,
+            "bio": bio,
+            "experience": experience.split(",")
+        }
+
+        console.log(experience.split(","))
+        const req = await updateUserReq(data)
+
+        console.log(req)
+    }
 
     return (
-        <form className="flex flex-col gap-y-4 w-fit" >
+        <form className="flex flex-col gap-y-4 w-fit" onSubmit={update}>
             <h3 className=" text-lg font-bold ">Sign up</h3>
             <label class="block">
                 <span class="block text-md font-medium">Name</span>
