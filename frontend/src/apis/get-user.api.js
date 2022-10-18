@@ -4,5 +4,5 @@ const route = 'user'
 const token = localStorage.getItem('token')
 
 export const getUserReq = () => {
-    return getReq(route, " ", token)
+    return getReq(route, token)
 }
