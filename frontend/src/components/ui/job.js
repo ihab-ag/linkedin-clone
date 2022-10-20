@@ -24,7 +24,6 @@ export const Job = ({ search }) => {
             "job_id": id
         }
         const req = await applyJobReq(data)
-        console.log(req)
     }
     return (
         <>
