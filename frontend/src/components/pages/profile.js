@@ -44,7 +44,7 @@ export const Profile = () => {
 
     return (
         <form className="flex flex-col gap-y-4 w-fit" onSubmit={update}>
-            <h3 className=" text-lg font-bold ">Sign up</h3>
+            <h3 className=" text-lg font-bold ">Edit Profile</h3>
             <label class="block">
                 <span class="block text-md font-medium">Name</span>
                 <input type="text" class="border-solid border-cyan-600 border-2 rounded-md " value={name} onChange={(e) => setName(e.target.value)} />
