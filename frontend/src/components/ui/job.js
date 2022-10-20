@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { applyJobReq } from '../../apis/apply-job.api'
 import { useJobs } from '../../hooks/query/jobs.query'
 
 export const Job = ({ search }) => {
@@ -18,8 +19,12 @@ export const Job = ({ search }) => {
         refetch()
     },[search])
 
-    const apply = (id) => {
-        console.log(id)
+    const apply = async (id) => {
+        const data = {
+            "job_id": id
+        }
+        const req = await applyJobReq(data)
+        console.log(req)
     }
     return (
         <>
