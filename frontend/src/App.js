@@ -6,6 +6,7 @@ import { Signup } from './components/pages/signup';
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Profile } from './components/pages/profile';
 import { Jobs } from './components/pages/jobs';
+import { Notifications } from './components/pages/notifications';
 
 export const queryClient = new QueryClient()
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='main' element={<Main />}>
             <Route path='profile' element={<Profile />} />
             <Route path='jobs' element={<Jobs />} />
+            <Route path='notifications' element={<Notifications />} />
           </Route>
         </Routes>
       </Router>
