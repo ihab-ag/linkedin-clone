@@ -38,7 +38,7 @@ export const Profile = () => {
             setBio(data['data'].cv.bio)
             setExperience(data['data'].cv.experience.join(","))
         }
-    },[isFetching])
+    },[isFetching,data])
     
     
 
