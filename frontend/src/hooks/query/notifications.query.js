@@ -8,6 +8,6 @@ export const useNotifications = () => useQuery({
 
     refetchOnWindowFocus: false,
     queryKey: NOTIFICATIONS_KEY,
-    queryFn: () => getNotificationsReq,
+    queryFn: () => getNotificationsReq(),
     staleTime: Infinity
 })
