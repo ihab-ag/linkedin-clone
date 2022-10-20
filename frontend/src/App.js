@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Entry from './components/layouts/entry.layout';
 import Login from './components/pages/login';
-import { Main } from './components/pages/main';
+import { Main } from './components/layouts/main.layout';
 import { Signup } from './components/pages/signup';
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Profile } from './components/pages/profile';
