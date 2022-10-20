@@ -6,7 +6,9 @@ export const Main = () => {
     return (
         <>
         <Navbar />
-        <Outlet />
+        <div className="flex flex-col justify-center items-center">
+            <Outlet />
+        </div>
         </>
     )
 }
