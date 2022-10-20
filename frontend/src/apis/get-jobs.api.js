@@ -4,5 +4,5 @@ const route = 'user/jobs?search='
 const token = localStorage.getItem('token')
 
 export const getJobsReq = (search) => {
-    return getReq(route, token)
+    return getReq(route + search, token)
 }
