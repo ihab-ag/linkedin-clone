@@ -18,12 +18,15 @@ export const Job = ({ search }) => {
         refetch()
     },[search])
 
+    const apply = (id) => {
+        console.log(id)
+    }
     return (
         <>
             {
-                jobs?.map((job)=><div className='mt-5 p-5 border-cyan-500 border-2 border-solid rounded-md flex flex-row justify-between w-fit gap-x-5'>
+                jobs?.map((job,key)=><div key={key} className='mt-5 p-5 border-cyan-500 border-2 border-solid rounded-md flex flex-row justify-between w-fit gap-x-5'>
                 <p className='text-xl font-sans font-semibold'>{job.desc}</p>
-                <button className='p-1 text-white bg-slate-800 rounded-lg h-fit hover:bg-slate-600'>Apply</button>
+                <button className='p-1 text-white bg-slate-800 rounded-lg h-fit hover:bg-slate-600' onClick={() => apply(job._id)}>Apply</button>
             </div>)
             }
         </>
